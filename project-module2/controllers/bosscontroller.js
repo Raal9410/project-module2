@@ -1,7 +1,7 @@
 const User = require('../models/User')
 
 exports.createUserForm = (req,res,next)=>{
-  res.render('auth/createStaff')
+  res.render('auth/create-staff')
 }
 
 exports.createUser = async (req, res, next)=>{

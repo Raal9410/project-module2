@@ -15,13 +15,13 @@ exports.createStudentForm = (req,res,next)=>{
 }
 
 exports.createStudent = async (req, res, next)=>{
-  const newStudent = await User.register({...req.body}, req.body.password)
+  const newStudent = await Student.register({...req.body}, req.body.password)
   console.log()
   res.redirect('/staffprofile')
 }
 exports.deleteStudent= async(req, res) => {
     const {id} = req.params
     await User.findByIdAndDelete(id)
-    res.redirect('/staffprofile')
+    Student.redirect('/staffprofile')
     
   }
