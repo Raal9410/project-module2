@@ -17,4 +17,5 @@ router.get('/create-staff',  ensureLogin.ensureLoggedIn(), checkRole('BOSS'), cr
 router.post('/create-staff',  ensureLogin.ensureLoggedIn(), checkRole('BOSS'), catchErrors(createUser))
 router.get('/delete-user/:id', ensureLogin.ensureLoggedIn(), checkRole('BOSS'), catchErrors(deleteUser))
 router.get('/logout', logout)
+router.get('/staffprofile', checkRole('STAFF'), ensureLogin.ensureLoggedIn(), staffprofile)
 module.exports = router;
