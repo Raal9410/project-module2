@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-const PLM = require('passport-local-mongoose')
-const { model, Schema } = require('mongoose')
-
-=======
 const {model, Schema} = require('mongoose')
 const PLM = require('passport-local-mongoose')
 
@@ -28,4 +23,3 @@ const studentSchema = new Schema(
 
 studentSchema.plugin(PLM, {usernameField: 'email'})
 module.exports = model('Student', studentSchema)
->>>>>>> 7d81487977ec3fa1dbd666ba4371c20e3aa51014
