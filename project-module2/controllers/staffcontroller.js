@@ -1,5 +1,4 @@
 const User = require('../models/User')
-const Student = require('../models/Student')
 
 exports.editStaffForm = (req, res, next) =>{
     res.render('auth/edit-staff', )
@@ -17,7 +16,7 @@ exports.createStudentForm = async (req,res,next)=>{
 }
 
 exports.createStudent = async (req, res, next)=>{
-  const newStudent = await Student.register({...req.body}, req.body.password)
+  const newStudent = await User.register({...req.body}, req.body.password)
   console.log(newStudent)
   res.redirect('/staffprofile')
 }
