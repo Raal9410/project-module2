@@ -6,8 +6,8 @@ const checkRole = require('../middlewares/checkRole')
 const {login, loginForm, logout, profile, staffprofile} = require('../controllers/index.controller')
 
 const {createUser, createUserForm, deleteUser} = require('../controllers/bosscontroller')
-const {editStaffForm, editStaff, createCourseForm, createCourse, deleteCourse, editCourseForm, editCourse} = require('../controllers/staffcontroller')
-const {createInvitation, invitationForm } = require('../controllers/studentscontroller')
+const {editStaffForm, editStaff, createStudentForm, createStudent} = require('../controllers/staffcontroller')
+const {createGuestForm, createGuest} = require('../controllers/studentscontroller')
 /* GET home page */
 router.get('/', (req, res, next) => {
   res.render('index');
@@ -23,9 +23,13 @@ router.get('/delete-user/:id', ensureLogin.ensureLoggedIn(), checkRole('BOSS'), 
 
 //Staff routes
 router.get('/staffprofile', checkRole('STAFF'), ensureLogin.ensureLoggedIn(), staffprofile)
-router.get('/create-invitado', createUserForm)
+router.get('/edit-staff', checkRole('STAFF'), ensureLogin.ensureLoggedIn(), editStaffForm)
+router.post('/edit-staff', checkRole('STAFF'), ensureLogin.ensureLoggedIn(), catchErrors(editStaff))
+
+
+//Student routes
+
+
 router.get('/logout', logout)
-
-router.get('/create-guest',checkRole('STAFF','STUDENT') createGuest)
-
 module.exports = router;
+

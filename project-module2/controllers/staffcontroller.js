@@ -1,4 +1,5 @@
 const User = require('../models/User')
+const Student = require('../models/Student')
 
 exports.editStaffForm = (req, res, next) =>{
     res.render('auth/edit-staff', )
@@ -10,13 +11,14 @@ exports.editStaff = async (req, res, next) =>{
     res.redirect('/staffprofile')
 }
 
-exports.createStudentForm = (req,res,next)=>{
-  res.render('auth/createStudent')
+exports.createStudentForm = async (req,res,next)=>{
+  const allStudents = await Student.find()
+  res.render('auth/create-student', {allStudents})
 }
 
 exports.createStudent = async (req, res, next)=>{
   const newStudent = await Student.register({...req.body}, req.body.password)
-  console.log()
+  console.log(newStudent)
   res.redirect('/staffprofile')
 }
 exports.deleteStudent= async(req, res) => {
