@@ -1,6 +1,6 @@
 const { model, Schema } = require('mongoose')
 
-const invitadoSchema = new Schema(
+const guestSchema = new Schema(
   {
     name: String,
     email: String,
@@ -12,4 +12,4 @@ const invitadoSchema = new Schema(
   }
 )
 
-module.exports = model('Invitado', studentSchema)
+module.exports = model('Guest', guestSchema)

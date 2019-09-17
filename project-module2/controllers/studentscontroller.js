@@ -1,14 +1,14 @@
-const Invitado = require('../models/Invitado')
+const Guest = require('../models/Guest')
 
 
-exports.invitationForm = async (req, res, next) => {
-  const invitado = await Invitado.find()
-  res.render('auth/createInvitado', {invitado})
+exports.guestForm = async (req, res, next) => {
+  const guest = await Guest.find()
+  res.render('auth/createGuest', {guest})
 }
 
-exports.createInvitation = async (req, res, next) =>{
+exports.createGuest = async (req, res, next) =>{
 const {name, email, fecha} = req.body
-await Invitado.create({name, email, fecha})
-res.redirect('create-invitado')
+await Guest.create({name, email, fecha})
+res.redirect('create-guest')
 }
 
