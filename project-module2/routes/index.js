@@ -39,3 +39,4 @@ router.post('/invite-guest', checkRole('STAFF'), checkRole('STUDENT'), ensureLog
 router.get('/logout', logout)
 module.exports = router;
 
+console.log('ay papantla tus hijos vuelan')
