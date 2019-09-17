@@ -1,11 +1,13 @@
 <h1>Boss profile</h1>
 <h2>Welcome {{boss.name}} {{boss.lastName}}</h2>
-{{#each allUsers}}
+{{#if users.role == 'STAFF'}}
+{{#each users as |user|}}
 <ul>
-    <li>{{this.name}} {{this.lastName}} - <b>{{{this.role}}}</b> <a href="/delete-user/{{this._id}}"><input type="submit" value="Delete"></a>
+    <li>{{user.name}} {{user.lastName}} - <b>{{{user.role}}}</b> <a href="/delete-user/{{this._id}}"><input type="submit" value="Delete"></a>
     </li>
 </ul>
 {{/each}}
+{{/if}}
 <a href="../create-staff"> Create staff</a>
 <br>
 <br>
