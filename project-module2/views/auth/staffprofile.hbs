@@ -1,11 +1,14 @@
 <h1>Staff profile</h1>
 <h2>Welcome {{staff.name}} {{staff.lastName}}</h2>
-{{#each allUsers}}
+<div class="students">
+    <h3>Students</h3>
+{{#each student as |user|}}
 <ul>
-    <li>{{this.name}} {{this.lastName}} - <b>{{{this.role}}}</b> <a href="/delete-user/{{this._id}}"><input type="submit" value="Delete"></a>
+    <li>{{user.name}} {{user.lastName}} - <b>{{{user.role}}}</b> <a href="/delete-student/{{this._id}}"><input type="submit" value="Delete"></a>
     </li>
 </ul>
 {{/each}}
+</div>
 <a href="/edit-staff/">Edit profile</a>
 <br>
 <br>

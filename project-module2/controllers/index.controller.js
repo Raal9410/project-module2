@@ -25,13 +25,17 @@ exports.profile = async (req, res, next) => {
   res.render('auth/profile', {boss, staff, checker}) //, {user: req.user}
 }
 
-exports.staffprofile = async (req, res, next) => {
-  const staff = await User.findById(req.user._id)
-  //const allCourses = await Course.find()
-  res.render('auth/staffprofile', { staff }) //, {user: req.user}
+exports.staffprofile = async(req,res,next)=>{
+const staff = await User.findById(req.user._id)
+const student = await User.find({role: 'STUDENT'})
+res.render('auth/staffprofile', {staff, student}) //, {user: req.user}
 }
-
-exports.logout = (req, res, next) => {
+exports.studentprofile = async(req,res,next)=>{
+const student = await User.findById(req.user._id)
+//const student = await User.find({role: 'STUDENT'})
+res.render('auth/studentprofile', {student}) //, {user: req.user}
+  }
+exports.logout =(req, res, next)=>{
   req.logout()
   res.redirect('login')
 }
