@@ -27,14 +27,14 @@ exports.deleteStudent= async(req, res) => {
     
   }
 
-  exports.createguestForm = async (req, res, next) => {
+  exports.inviteGuestForm = async (req, res, next) => {
     const guest = await Guest.find()
     res.render('auth/createGuest', {guest})
   }
   
-  exports.createGuest = async (req, res, next) =>{
-  const {name, email, fecha} = req.body
-  await Guest.create({name, email, fecha})
-  res.redirect('student-profile')
+  exports.inviteGuest = async (req, res, next) =>{
+  const {name, email, date, person} = req.body
+  await Guest.create({name, email, date, person})
+  res.redirect('/staffprofile')
   }
   

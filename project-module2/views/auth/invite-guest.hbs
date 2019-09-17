@@ -1,6 +1,6 @@
-<h2>Invite a alguien</h2>
+<h2>Invite someone</h2>
 
-<form action="/create-guest" method="POST">
+<form action="/invite-guest" method="POST">
 <label for="name">Name</label>
 <input type="text" name="name" id="name" placeholder="Name">
 <label for="lastName">Last Name</label>
@@ -8,4 +8,10 @@
 <label for="email">Email</label>
 <input type="email" name="email" id="email">
 <input type="submit" value="Create">
+<label for="person">Who are you going to visit?</label>
+<input type="text" name="person" id="person">
+<input type="submit" value="Invite">
+</form>
+
+<a href="/staffprofile">Go Back</a>
 </form>

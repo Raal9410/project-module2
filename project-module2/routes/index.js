@@ -6,7 +6,7 @@ const checkRole = require('../middlewares/checkRole')
 const {login, loginForm, logout, profile, staffprofile, studentprofile} = require('../controllers/index.controller')
 
 const {createUser, createUserForm, deleteUser} = require('../controllers/bosscontroller')
-const {editStaffForm, editStaff, createStudentForm, createStudent, deleteStudent} = require('../controllers/staffcontroller')
+const {editStaffForm, editStaff, createStudentForm, createStudent, deleteStudent, inviteGuestForm, inviteGuest} = require('../controllers/staffcontroller')
 const {createGuestForm, createGuest} = require('../controllers/studentscontroller')
 /* GET home page */
 router.get('/', (req, res, next) => {
@@ -26,13 +26,16 @@ router.get('/staffprofile', checkRole('STAFF'), ensureLogin.ensureLoggedIn(), st
 router.get('/edit-staff', checkRole('STAFF'), ensureLogin.ensureLoggedIn(), editStaffForm)
 router.post('/edit-staff', checkRole('STAFF'), ensureLogin.ensureLoggedIn(), catchErrors(editStaff))
 router.get('/create-student', checkRole('STAFF'), ensureLogin.ensureLoggedIn(), createStudentForm )
-router.post('/create-student', checkRole('STAFF'), ensureLogin.ensureLoggedIn(), catchErrors(createStudent) )
+router.post('/create-student', checkRole('STAFF'), ensureLogin.ensureLoggedIn(), catchErrors(createStudent))
 router.get('/delete-student/:id', ensureLogin.ensureLoggedIn(), checkRole('STAFF'), catchErrors(deleteStudent))
 
 //Student routes
 router.get('/studentprofile', checkRole('STUDENT'), ensureLogin.ensureLoggedIn(), studentprofile)
 
 
+
+router.get('/invite-guest', checkRole('STAFF'), checkRole('STUDENT'), ensureLogin.ensureLoggedIn(), inviteGuestForm)
+router.post('/invite-guest', checkRole('STAFF'), checkRole('STUDENT'), ensureLogin.ensureLoggedIn(), catchErrors(inviteGuest))
 router.get('/logout', logout)
 module.exports = router;
 
