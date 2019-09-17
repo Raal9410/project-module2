@@ -9,6 +9,13 @@ const guestSchema = new Schema(
     date: {
       type: Date,
       default: Date.now()
+    },
+    code: {
+      type:String,
+      unique:true
+    }
+    host:{
+      
     }
   },
   {

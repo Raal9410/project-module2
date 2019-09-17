@@ -1,23 +1,23 @@
 const User = require('../models/User')
-exports.loginForm = (req, res, next) =>{
-    res.render('auth/login',)
-  }
+exports.loginForm = (req, res, next) => {
+  res.render('auth/login')
+}
 
-exports.login = (req,res, next) => {
-  if(req.user.role === 'BOSS'){
+exports.login = (req, res, next) => {
+  if (req.user.role === 'BOSS') {
     res.redirect('/profile')
-  } else if (req.user.role ==='STAFF'){
+  } else if (req.user.role === 'STAFF') {
     res.redirect('/staffprofile')
-  } else if (req.user.role === 'CHECKER'){ 
+  } else if (req.user.role === 'CHECKER') {
     res.redirect('/checkinvitations')
-  }else if (req.user.role === 'STUDENT'){ 
+  } else if (req.user.role === 'STUDENT') {
     res.redirect('/studentprofile')
   }else{ 
     res.redirect('/login')
   }
 }
 
-exports.profile = async(req,res,next)=>{
+exports.profile = async (req, res, next) => {
   const boss = await User.findById(req.user._id)
   //const users = await User.find()
   const staff = await (User.find({role: 'STAFF'}))
