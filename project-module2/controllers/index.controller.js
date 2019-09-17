@@ -10,7 +10,9 @@ exports.login = (req,res, next) => {
     res.redirect('/staffprofile')
   } else if (req.user.role === 'CHECKER'){ 
     res.redirect('/checkinvitations')
-  }else{ 
+  }else if (req.user.role === 'STUDENT'){ 
+    res.redirect('/studentprofile')
+  else{ 
     res.redirect('/login')
   }
 }
