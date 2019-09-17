@@ -5,7 +5,10 @@ const guestSchema = new Schema(
     name: String,
     email: String,
     lastname: String,
-    fecha: Number
+    fecha: {
+      type: Date,
+      default: Date.now()
+    }
   },
   {
     timestamps: true

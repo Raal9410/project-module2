@@ -16,13 +16,14 @@ exports.login = (req,res, next) => {
 }
 
 exports.profile = async(req,res,next)=>{
-  res.render('auth/profile') //, {user: req.user}
+  const boss = await User.findById(req.user._id)
+  res.render('auth/profile', {boss}) //, {user: req.user}
 }
 
 exports.staffprofile = async(req,res,next)=>{
-const user = await User.findById(req.user._id)
+const staff = await User.findById(req.user._id)
 //const allCourses = await Course.find()
-res.render('auth/staffprofile', {user}) //, {user: req.user}
+res.render('auth/staffprofile', {staff}) //, {user: req.user}
 }
 
 exports.logout =(req, res, next)=>{
