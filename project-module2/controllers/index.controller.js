@@ -19,7 +19,8 @@ exports.login = (req,res, next) => {
 
 exports.profile = async(req,res,next)=>{
   const boss = await User.findById(req.user._id)
-  res.render('auth/profile', {boss}) //, {user: req.user}
+  const users = await User.find()
+  res.render('auth/profile', {boss, users}) //, {user: req.user}
 }
 
 exports.staffprofile = async(req,res,next)=>{
