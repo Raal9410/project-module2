@@ -33,3 +33,44 @@ router.post('/edit-staff', checkRole('STAFF'), ensureLogin.ensureLoggedIn(), cat
 router.get('/logout', logout)
 module.exports = router;
 
+
+
+
+router.post("/create-guest", (req, res) => {
+  const { password } = req.body;
+  const characters =
+    "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  let token = "";
+  for (let i = 0; i < 25; i++) {
+    token += characters[Math.floor(Math.random() * characters.length)];
+  }
+  const confirmationCode = token;
+
+  const user = { ...req.body, confirmationCode };
+
+  Student.(student, password)
+    .then(data => {
+      transporter.sendMail({
+        from: "IRONBN <noreply@ironbnb.com>",
+        to: data.email,
+        subject: "Confirm Your Account at IRONBNB",
+
+        text: `Hello ${data.username} 
+          Please click here to confirm your IRONBNB account: 
+          ${req.headers.origin}/auth/confirm/${data.confirmationCode}
+          Thank you.`
+      });
+      res.render("email-sent", { data });
+    })
+    .catch(err => {
+      res.render("auth-form", { err });
+    });
+});
+
+router.get("/confirm/:confirmCode", (req, res) => {
+  User.find({ confirmationCode: req.params.confirmCode }).then(user => {
+    let id = user[0]._id;
+    });
+  });
+});
+

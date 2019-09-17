@@ -12,14 +12,17 @@ exports.login = (req, res, next) => {
     res.redirect('/checkinvitations')
   } else if (req.user.role === 'STUDENT') {
     res.redirect('/studentprofile')
-  } else {
+  }else{ 
     res.redirect('/login')
   }
 }
 
 exports.profile = async (req, res, next) => {
   const boss = await User.findById(req.user._id)
-  res.render('auth/profile', { boss }) //, {user: req.user}
+  //const users = await User.find()
+  const staff = await (User.find({role: 'STAFF'}))
+  const checker = await (User.find({role: 'CHECKER'}))
+  res.render('auth/profile', {boss, staff, checker}) //, {user: req.user}
 }
 
 exports.staffprofile = async (req, res, next) => {

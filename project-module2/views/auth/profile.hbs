@@ -1,11 +1,23 @@
 <h1>Boss profile</h1>
 <h2>Welcome {{boss.name}} {{boss.lastName}}</h2>
-{{#each allUsers}}
+<div class="staff">
+    <h3>Staff</h3>
+{{#each staff as |user|}}
 <ul>
-    <li>{{this.name}} {{this.lastName}} - <b>{{{this.role}}}</b> <a href="/delete-user/{{this._id}}"><input type="submit" value="Delete"></a>
+    <li>{{user.name}} {{user.lastName}} - <b>{{{user.role}}}</b> <a href="/delete-user/{{this._id}}"><input type="submit" value="Delete"></a>
     </li>
 </ul>
 {{/each}}
+</div>
+<div class="checkers">
+    <h3>Checkers</h3>  
+{{#each checker as |user|}}
+<ul>
+    <li>{{user.name}} {{user.lastName}} - <b>{{{user.role}}}</b> <a href="/delete-user/{{this._id}}"><input type="submit" value="Delete"></a>
+    </li>
+</ul>
+{{/each}}
+</div>
 <a href="../create-staff"> Create staff</a>
 <br>
 <br>
