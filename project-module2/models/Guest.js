@@ -5,7 +5,7 @@ const guestSchema = new Schema(
     name: String,
     email: String,
     lastname: String,
-    fecha: {
+    date: {
       type: Date,
       default: Date.now()
     }

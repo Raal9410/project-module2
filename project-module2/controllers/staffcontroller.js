@@ -11,8 +11,7 @@ exports.editStaff = async (req, res, next) =>{
 }
 
 exports.createStudentForm = async (req,res,next)=>{
-  const allStudents = await Student.find()
-  res.render('auth/create-student', {allStudents})
+  res.render('auth/create-student')
 }
 
 exports.createStudent = async (req, res, next)=>{
@@ -20,10 +19,11 @@ exports.createStudent = async (req, res, next)=>{
   console.log(newStudent)
   res.redirect('/staffprofile')
 }
+
 exports.deleteStudent= async(req, res) => {
     const {id} = req.params
     await User.findByIdAndDelete(id)
-    Student.redirect('/staffprofile')
+    res.redirect('/staffprofile')
     
   }
 
