@@ -41,7 +41,7 @@ module.exports = router;
 
 
 
-
+/*
 router.post("/create-guest", (req, res) => {
   const { password } = req.body;
   const characters =
@@ -80,3 +80,4 @@ router.get("/confirm/:confirmCode", (req, res) => {
   });
 });
 
+*/

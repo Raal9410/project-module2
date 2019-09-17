@@ -14,9 +14,6 @@ const guestSchema = new Schema(
       type:String,
       unique:true
     }
-    host:{
-      
-    }
   },
   {
     timestamps: true
