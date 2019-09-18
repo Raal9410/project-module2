@@ -3,6 +3,7 @@ const passport = require('../handlers/passport')
 const ensureLogin = require('connect-ensure-login')
 const {catchErrors} = require('../middlewares/catchErrors')
 const checkRole = require('../middlewares/checkRole')
+const {mail} = require('../middlewares/sendMail')
 const {login, loginForm, logout, profile, staffprofile, studentprofile} = require('../controllers/index.controller')
 
 const {createUser, createUserForm, deleteUser} = require('../controllers/bosscontroller')
@@ -27,16 +28,11 @@ router.get('/edit-staff', checkRole('STAFF'), ensureLogin.ensureLoggedIn(), edit
 router.post('/edit-staff', checkRole('STAFF'), ensureLogin.ensureLoggedIn(), catchErrors(editStaff))
 router.get('/create-student', checkRole('STAFF'), ensureLogin.ensureLoggedIn(), createStudentForm )
 router.post('/create-student', checkRole('STAFF'), ensureLogin.ensureLoggedIn(), catchErrors(createStudent))
+router.get('/invite-guest', ensureLogin.ensureLoggedIn(), checkRole('STAFF'), inviteGuestForm)
+router.post('/invite-guest', ensureLogin.ensureLoggedIn(), checkRole('STAFF'), mail, catchErrors(inviteGuest))
 router.get('/delete-student/:id', ensureLogin.ensureLoggedIn(), checkRole('STAFF'), catchErrors(deleteStudent))
-
 //Student routes
 router.get('/studentprofile', checkRole('STUDENT'), ensureLogin.ensureLoggedIn(), studentprofile)
-
-
-
-router.get('/invite-guest', checkRole('STAFF'), checkRole('STUDENT'), ensureLogin.ensureLoggedIn(), inviteGuestForm)
-router.post('/invite-guest', checkRole('STAFF'), checkRole('STUDENT'), ensureLogin.ensureLoggedIn(), catchErrors(inviteGuest))
 router.get('/logout', logout)
 module.exports = router;
 
-console.log('ay papantla tus hijos vuelan')
