@@ -31,8 +31,17 @@ exports.deleteStudent= async(req, res) => {
   }
   
   exports.inviteGuest = async (req, res, next) =>{
-  const newGuest = await Guest.create({...req.body})
+  const invitedBy = req.user._id  
+  const newGuest = await Guest.create({...req.body, invitedBy}) 
   console.log(newGuest)
   res.redirect('/staffprofile')
   }
+
+  exports.deleteGuest= async(req, res) => {
+    const {id} = req.params
+    await Guest.findByIdAndDelete(id)
+    res.redirect('/staffprofile')
+    
+  }
+  //.populate('invitedBy')
   

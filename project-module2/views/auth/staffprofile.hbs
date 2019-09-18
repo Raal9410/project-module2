@@ -8,6 +8,16 @@
     </li>
 </ul>
 {{/each}}
+
+<div class="staffguest">
+    <h3>Guests</h3>
+    {{#each guest}}
+<ul>
+    <li>{{this.name}} {{this.lastName}} - <b>{{{this.date}}}</b> <a href="/delete-guest/{{this._id}}"><input type="submit" value="Delete"></a>
+    </li>
+</ul>
+{{/each}}
+</div>
 </div>
 <a href="/invite-guest">Invite somenone</a>
 <br>

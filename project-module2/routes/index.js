@@ -7,7 +7,7 @@ const {mail} = require('../middlewares/sendMail')
 const {login, loginForm, logout, profile, staffprofile, studentprofile} = require('../controllers/index.controller')
 
 const {createUser, createUserForm, deleteUser} = require('../controllers/bosscontroller')
-const {editStaffForm, editStaff, createStudentForm, createStudent, deleteStudent, inviteGuestForm, inviteGuest} = require('../controllers/staffcontroller')
+const {editStaffForm, editStaff, createStudentForm, createStudent, deleteStudent, inviteGuestForm, inviteGuest, deleteGuest} = require('../controllers/staffcontroller')
 const {createGuestForm, createGuest} = require('../controllers/studentscontroller')
 /* GET home page */
 router.get('/', (req, res, next) => {
@@ -30,6 +30,7 @@ router.get('/create-student', checkRole('STAFF'), ensureLogin.ensureLoggedIn(), 
 router.post('/create-student', checkRole('STAFF'), ensureLogin.ensureLoggedIn(), catchErrors(createStudent))
 router.get('/invite-guest', ensureLogin.ensureLoggedIn(), checkRole('STAFF'), inviteGuestForm)
 router.post('/invite-guest', ensureLogin.ensureLoggedIn(), checkRole('STAFF'), mail, catchErrors(inviteGuest))
+router.get('/delete-guest/:id', ensureLogin.ensureLoggedIn(), checkRole('STAFF'), catchErrors(deleteGuest))
 router.get('/delete-student/:id', ensureLogin.ensureLoggedIn(), checkRole('STAFF'), catchErrors(deleteStudent))
 //Student routes
 router.get('/studentprofile', checkRole('STUDENT'), ensureLogin.ensureLoggedIn(), studentprofile)

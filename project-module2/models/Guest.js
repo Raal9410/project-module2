@@ -7,11 +7,16 @@ const guestSchema = new Schema(
     lastName: String,
     date: {
       type: Date,
-      default: Date.now()
+      default: Date.now(),
+      required: true,
     },
     code: {
       type:String,
       unique:true
+    },
+    invitedBy: {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
     }
   },
   {

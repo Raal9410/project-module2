@@ -1,4 +1,5 @@
 const User = require('../models/User')
+const Guest = require('../models/Guest')
 exports.loginForm = (req, res, next) => {
   res.render('auth/login')
 }
@@ -28,7 +29,9 @@ exports.profile = async (req, res, next) => {
 exports.staffprofile = async(req,res,next)=>{
 const staff = await User.findById(req.user._id)
 const student = await User.find({role: 'STUDENT'})
-res.render('auth/staffprofile', {staff, student}) //, {user: req.user}
+const guest = await Guest.find({invitedBy: req.user._id})
+console.log(guest)
+res.render('auth/staffprofile', {staff, student, guest}) //, {user: req.user}
 }
 exports.studentprofile = async(req,res,next)=>{
 const student = await User.findById(req.user._id)
