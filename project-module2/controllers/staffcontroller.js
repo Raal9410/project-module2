@@ -1,5 +1,5 @@
 const User = require('../models/User')
-
+const Guest = require('../models/Guest')
 exports.editStaffForm = (req, res, next) =>{
     res.render('auth/edit-staff', )
 }
@@ -28,13 +28,12 @@ exports.deleteStudent= async(req, res) => {
   }
 
   exports.inviteGuestForm = async (req, res, next) => {
-    const guest = await Guest.find()
-    res.render('auth/createGuest', {guest})
+    res.render('auth/invite-guest')
   }
   
   exports.inviteGuest = async (req, res, next) =>{
-  const {name, email, date, person} = req.body
-  await Guest.create({name, email, date, person})
+  const {name, email, date} = req.body
+  await Guest.create({name, email, date})
   res.redirect('/staffprofile')
   }
   
