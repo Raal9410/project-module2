@@ -32,8 +32,8 @@ exports.deleteStudent= async(req, res) => {
   }
   
   exports.inviteGuest = async (req, res, next) =>{
-  const {name, email, date} = req.body
-  await Guest.create({name, email, date})
+  const newGuest = await Guest.create({...req.body})
+  console.log(newGuest)
   res.redirect('/staffprofile')
   }
   

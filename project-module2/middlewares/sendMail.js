@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer')
 
 exports.mail = async (req, res, next) => {
-  const { email, name, lastName, message, subject} = req.body;
+  const { email, name, lastName, message, subject, date} = req.body;
   const transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth:{
@@ -16,5 +16,6 @@ exports.mail = async (req, res, next) => {
     text: message,
     html: `<p>${message}</p>`
   })
-  res.render('message', { email, subject, message, name, lastName, info })
+  next()
+  //res.render('message', { email, subject, message, name, lastName, info, date })
 }

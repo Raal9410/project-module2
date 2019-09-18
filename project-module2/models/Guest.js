@@ -4,8 +4,7 @@ const guestSchema = new Schema(
   {
     name: String,
     email: String,
-    lastname: String,
-    person: String,
+    lastName: String,
     date: {
       type: Date,
       default: Date.now()
