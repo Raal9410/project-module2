@@ -11,14 +11,13 @@ exports.editStudent = async (req, res, next) =>{
   res.redirect('/studentprofile')
 }
 
-exports.createGuestForm = async (req, res, next) => {
-  const guest = await Guest.find()
-  res.render('auth/createGuest', {guest})
+exports.inviteGuestForm = async (req, res, next) => {
+  res.render('auth/invite-guest')
 }
 
-exports.createGuest = async (req, res, next) =>{
-const {name, email, fecha} = req.body
-await Guest.create({name, email, fecha})
-res.redirect('student-profile')
+exports.inviteGuest = async (req, res, next) =>{
+const newGuest = await Guest.create({...req.body})
+console.log(newGuest)
+res.redirect('/staffprofile')
 }
 

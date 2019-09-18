@@ -26,7 +26,6 @@ exports.deleteStudent= async(req, res) => {
     res.redirect('/staffprofile')
     
   }
-
   exports.inviteGuestForm = async (req, res, next) => {
     res.render('auth/invite-guest')
   }
